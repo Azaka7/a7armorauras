@@ -1,0 +1,16 @@
+[
+{
+  "modid": "a7armorauras",
+  "name": "A7 Armor Auras",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Azaka7"],
+  "credits": "JonBams and the Bamily",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "a7armorauras:holder"
+    ]
+  },
+  "criteria": {
+    "has_charm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "a7armorauras:aura_charm"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "a7armorauras:holder"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_charm",
+      "has_the_recipe"
+    ]
+  ]
+}

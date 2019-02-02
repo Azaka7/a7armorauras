@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "a7armorauras:items/charm_gravity"
+    }
+}

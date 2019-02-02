@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "a7armorauras:self_charm_1",
+      "a7armorauras:self_charm_2",
+      "a7armorauras:self_charm_3",
+      "a7armorauras:self_charm_4",
+      "a7armorauras:self_charm_5",
+      "a7armorauras:self_charm_6",
+      "a7armorauras:self_charm_7",
+      "a7armorauras:self_charm_8",
+      "a7armorauras:self_charm_9",
+      "a7armorauras:self_charm_10",
+      "a7armorauras:self_charm_11",
+      "a7armorauras:self_charm_12"
+    ]
+  },
+  "criteria": {
+    "has_charm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "a7armorauras:self_charm"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "a7armorauras:self_charm_1"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_charm",
+      "has_the_recipe"
+    ]
+  ]
+}
