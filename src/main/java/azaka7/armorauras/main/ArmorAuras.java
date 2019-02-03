@@ -84,11 +84,11 @@ public class ArmorAuras
         holderToggle = config.getBoolean("Aura Activator", "Auras", true, "");
         auraToggles[0] = config.getBoolean("Aura Charm", "Auras", true, "");
         for(int i = 1; i < auraToggles.length; i++){
-            auraToggles[i] = config.getBoolean("Aura Charm ("+ItemAuraCharm.EnumAuraType.values()[i].getName()+")", "Auras", true, "");
+            auraToggles[i] = config.getBoolean("Aura Charm ("+ItemAuraCharm.EnumAuraType.values()[i].getUnlocalizedName()+")", "Auras", true, "");
         }
         selfAuraToggles[0] = config.getBoolean("Inner Aura Charm", "Auras", true, "");
         for(int i = 1; i < selfAuraToggles.length; i++){
-            selfAuraToggles[i] = config.getBoolean("Inner Aura Charm ("+ItemSelfAuraCharm.EnumSelfAuraType.values()[i].getName()+")", "Auras", true, "");
+            selfAuraToggles[i] = config.getBoolean("Inner Aura Charm ("+ItemSelfAuraCharm.EnumSelfAuraType.values()[i].getUnlocalizedName()+")", "Auras", true, "");
         }
         
         config.save();
