@@ -24,7 +24,7 @@ public class ArmorAuras
 {
     public static final String MODID = "a7armorauras";
     public static final String NAME = "A7 Armor Auras";
-    public static final String VERSION = "1.1b";
+    public static final String VERSION = "1.2b";
 
     private static boolean isClient = false;;
     private static Logger logger;
@@ -35,6 +35,7 @@ public class ArmorAuras
     
     private static byte auraRadius;
     public static byte getAuraRadius(){return auraRadius;}
+    
     private static int xpCost;
     public static int getXPCost(){return xpCost;}
     
@@ -47,8 +48,8 @@ public class ArmorAuras
     private static boolean holderToggle;
     private static boolean[] auraToggles;
     private static boolean[] selfAuraToggles;
-    
-    //TODO FIGURE OUT WHY LANG FILE IS IGNORED!!!!!!!!!!
+    private static boolean fattyMode;
+    public static boolean isFat(){return fattyMode;}
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -69,6 +70,7 @@ public class ArmorAuras
         config.setCategoryComment("General", "Manage general mod settings");
         auraRadius = (byte) config.getInt("Aura Radius", "General",5, 0, 127, "Radius of outward aura effects (up to 127)");
         xpCost = config.getInt("Armor Charm XP Cost","General",30,0,Short.MAX_VALUE,"The amount of XP required to apply an aura charm to a piece of armor.");
+        fattyMode = config.getBoolean("Fatty Mode", "General", false, "Replaces slowness aura translation with a less politically correct term");
         
         config.setCategoryComment("Armor Settings", "Determine the number of auras each armor type can handle");
         helmCount = config.getInt("Helmet", "Armor Settings", 1, 0, 127, "Default: 1");

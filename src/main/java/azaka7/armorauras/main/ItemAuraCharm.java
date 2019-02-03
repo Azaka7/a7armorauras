@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import azaka7.armorauras.client.ClientHandler;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -53,9 +54,10 @@ public class ItemAuraCharm extends Item{
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		if(stack.getItem() == this){
-			tooltip.add("\u00a76"+EnumAuraType.values()[stack.getMetadata()].getName()+" Aura");
-			tooltip.add("\u00a77 Hold in main or offhand to activate");
-			tooltip.add("\u00a77 Can be added to armor in an anvil, requiring an Aura Activator");
+			ClientHandler client = ClientHandler.instance();
+			tooltip.add("\u00a76"+EnumAuraType.values()[stack.getMetadata()].getName()+" "+client.localize("a7armorauras.tooltip.aura"));
+			tooltip.add("\u00a77 "+client.localize("a7armorauras.tooltip.charm.activate"));
+			tooltip.add("\u00a77 "+client.localize("a7armorauras.tooltip.charm.armor"));
 		}
     }
 	
@@ -111,18 +113,18 @@ public class ItemAuraCharm extends Item{
 	}
 	
 	public static enum EnumAuraType implements IStringSerializable{
-		NULL(0,0,"No", null),
-		SLOW(1,0,"Slowness", new PotionEffect(MobEffects.SLOWNESS, 60, 0, false, false)),
-		SLOW2(2,0,"Greater Slowness", new PotionEffect(MobEffects.SLOWNESS, 40, 1, false, false)),
-		SLOW3(3,0,"Extreme Slowness", new PotionEffect(MobEffects.SLOWNESS, 20, 2, false, false)),
-		WEAK(4,1,"Weakness", new PotionEffect(MobEffects.WEAKNESS, 60, 0, false, false)),
-		WEAK2(5,1,"Greater Weakness", new PotionEffect(MobEffects.WEAKNESS, 40, 1, false, false)),
-		WEAK3(6,1,"Extreme Weakness", new PotionEffect(MobEffects.WEAKNESS, 20, 2, false, false)),
-		POISON(7,2,"Lesser Poison", new PotionEffect(MobEffects.POISON, 80, 0, false, false)),
-		POISON2(8,2,"Poison", new PotionEffect(MobEffects.POISON, 60, 1, false, false)),
-		WITHER(9,3,"Withering", new PotionEffect(MobEffects.WITHER, 60, 0, false, false)),
-		WITHER2(10,3,"Immense Withering", new PotionEffect(MobEffects.WITHER, 60, 1, false, false)),
-		NAUSEA(11,4,"Noxious", new PotionEffect(MobEffects.NAUSEA, 200, 0, false, false));
+		NULL(0,0,"null", null),
+		SLOW(1,0,"slow", new PotionEffect(MobEffects.SLOWNESS, 60, 0, false, false)),
+		SLOW2(2,0,"slow2", new PotionEffect(MobEffects.SLOWNESS, 40, 1, false, false)),
+		SLOW3(3,0,"slow3", new PotionEffect(MobEffects.SLOWNESS, 20, 2, false, false)),
+		WEAK(4,1,"weak", new PotionEffect(MobEffects.WEAKNESS, 60, 0, false, false)),
+		WEAK2(5,1,"weak2", new PotionEffect(MobEffects.WEAKNESS, 40, 1, false, false)),
+		WEAK3(6,1,"weak3", new PotionEffect(MobEffects.WEAKNESS, 20, 2, false, false)),
+		POISON(7,2,"poison", new PotionEffect(MobEffects.POISON, 80, 0, false, false)),
+		POISON2(8,2,"poison2", new PotionEffect(MobEffects.POISON, 60, 1, false, false)),
+		WITHER(9,3,"wither", new PotionEffect(MobEffects.WITHER, 60, 0, false, false)),
+		WITHER2(10,3,"wither2", new PotionEffect(MobEffects.WITHER, 60, 1, false, false)),
+		NAUSEA(11,4,"nausea", new PotionEffect(MobEffects.NAUSEA, 200, 0, false, false));
 		
     	//PotionEffect effect = new PotionEffect(potion, duration, amplifier, isFromBeacon, canSeeParticles);
 		
@@ -143,6 +145,16 @@ public class ItemAuraCharm extends Item{
 		}
 
 		public String getName() {
+			String unlocalized = "a7armorauras.auras."+name;
+			if(this == SLOW || this == SLOW2 || this == SLOW3){
+				if(ArmorAuras.isFat()){
+					unlocalized = unlocalized + ".f";
+				}
+			}
+			return ClientHandler.instance().localize(unlocalized);
+		}
+		
+		public String getUnlocalizedName(){
 			return name;
 		}
 		

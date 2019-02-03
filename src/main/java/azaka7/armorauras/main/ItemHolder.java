@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import azaka7.armorauras.client.ClientHandler;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -32,13 +33,14 @@ public class ItemHolder extends Item{
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		tooltip.add("\u00a77Activates auras added to worn armor");
-		tooltip.add("\u00a78\u00a7nMax auras per armor type");
+		ClientHandler client = ClientHandler.instance();
+		tooltip.add("\u00a77"+client.localize(ArmorAuras.MODID+".tooltip.holder.activates"));
+		tooltip.add("\u00a78\u00a7n"+client.localize(ArmorAuras.MODID+".tooltip.holder.maxauras"));
 		int[] armorLimits = ArmorAuras.getArmorLimits();
-		tooltip.add("\u00a78 Helmet: "+armorLimits[3]);
-		tooltip.add("\u00a78 Chestplate: "+armorLimits[2]);
-		tooltip.add("\u00a78 Leggings: "+armorLimits[1]);
-		tooltip.add("\u00a78 Boots: "+armorLimits[0]);
+		tooltip.add("\u00a78 "+client.localize(ArmorAuras.MODID+".tooltip.holder.helmet")+": "+armorLimits[3]);
+		tooltip.add("\u00a78 "+client.localize(ArmorAuras.MODID+".tooltip.holder.chestplate")+": "+armorLimits[2]);
+		tooltip.add("\u00a78 "+client.localize(ArmorAuras.MODID+".tooltip.holder.leggings")+": "+armorLimits[1]);
+		tooltip.add("\u00a78 "+client.localize(ArmorAuras.MODID+".tooltip.holder.boots")+": "+armorLimits[0]);
     }
 	
 	@Override

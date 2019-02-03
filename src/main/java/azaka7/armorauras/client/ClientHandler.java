@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -32,6 +33,10 @@ public class ClientHandler {
 			MinecraftForge.EVENT_BUS.register(INSTANCE);
 		}
 		return INSTANCE;
+	}
+	
+	public String localize(String in){
+		return I18n.format(in);
 	}
 	
 	public void registerItemModels(HashMap<String, Item> items) {
@@ -65,7 +70,7 @@ public class ClientHandler {
 					for(int i = 0; i < effects.length; i++){
 						int ef = effects[i];
 						ItemAuraCharm.EnumAuraType aura = ItemAuraCharm.EnumAuraType.values()[ef];
-						lines.add(1, "\u00a76"+aura.getName()+" Aura");
+						lines.add(1, "\u00a76"+aura.getName()+" "+localize("a7armorauras.tooltip.aura"));
 					}
 				}
 				if(auras.hasKey("selfauras")){
@@ -73,7 +78,7 @@ public class ClientHandler {
 					for(int ef : effects){
 						PotionEffect pot = ItemAuraCharm.EnumAuraType.values()[ef].getEffect();
 						ItemSelfAuraCharm.EnumSelfAuraType aura = ItemSelfAuraCharm.EnumSelfAuraType.values()[ef];
-						lines.add(1,"\u00a7b"+aura.getName()+" Inner Aura");
+						lines.add(1,"\u00a7b"+aura.getName()+" "+localize("a7armorauras.tooltip.inneraura"));
 					}
 				}
 				

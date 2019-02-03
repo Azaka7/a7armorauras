@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import azaka7.armorauras.client.ClientHandler;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -52,10 +53,11 @@ public class ItemSelfAuraCharm extends Item{
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
+		ClientHandler client = ClientHandler.instance();
 		if(stack.getItem() == this){
-			tooltip.add("\u00a76"+EnumSelfAuraType.values()[stack.getMetadata()].getName()+" Inner Aura");
-			tooltip.add("\u00a77 Hold in main or offhand to activate");
-			tooltip.add("\u00a77 Can be added to armor in an anvil, requiring an Aura Activator");
+			tooltip.add("\u00a76"+EnumSelfAuraType.values()[stack.getMetadata()].getName()+" "+client.localize("a7armorauras.tooltip.inneraura"));
+			tooltip.add("\u00a77 "+client.localize("a7armorauras.tooltip.charm.activate"));
+			tooltip.add("\u00a77 "+client.localize("a7armorauras.tooltip.charm.armor"));
 		}
     }
 	
@@ -103,19 +105,19 @@ public class ItemSelfAuraCharm extends Item{
 	}
 	
 	public static enum EnumSelfAuraType implements IStringSerializable{
-		NULL(0,0,"No", null),
-		SPEED(1,0,"Speed", new PotionEffect(MobEffects.SPEED, 60, 0, false, false)),
-		SPEED2(2,0,"Super Speed", new PotionEffect(MobEffects.SPEED, 40, 1, false, false)),
-		SPEED3(3,0,"Hyper Speed", new PotionEffect(MobEffects.SPEED, 20, 2, false, false)),
-		STRONG(4,1,"Strength", new PotionEffect(MobEffects.STRENGTH, 60, 0, false, false)),
-		STRONG2(5,1,"Super Strength", new PotionEffect(MobEffects.STRENGTH, 30, 1, false, false)),
-		RESIST(6,2,"Resistance", new PotionEffect(MobEffects.RESISTANCE, 60, 2, false, false)),
-		RESIST1(7,2,"Greater Resistance", new PotionEffect(MobEffects.RESISTANCE, 40, 0, false, false)),
-		RESIST2(8,2,"Extreme Resistance", new PotionEffect(MobEffects.RESISTANCE, 20, 1, false, false)),
-		HEAL(9,3,"Healing", new PotionEffect(MobEffects.REGENERATION, 120, 0, false, false)),
-		HEAL2(10,3,"Immense Healing", new PotionEffect(MobEffects.REGENERATION, 60, 1, false, false)),
-		HASTE(11,4,"Hasty", new PotionEffect(MobEffects.HASTE, 20, 0, false, false)),
-		LUCK(12,5,"Lucky", new PotionEffect(MobEffects.LUCK, 200, 0, false, false));
+		NULL(0,0,"null", null),
+		SPEED(1,0,"speed", new PotionEffect(MobEffects.SPEED, 60, 0, false, false)),
+		SPEED2(2,0,"speed2", new PotionEffect(MobEffects.SPEED, 40, 1, false, false)),
+		SPEED3(3,0,"speed3", new PotionEffect(MobEffects.SPEED, 20, 2, false, false)),
+		STRONG(4,1,"strength", new PotionEffect(MobEffects.STRENGTH, 60, 0, false, false)),
+		STRONG2(5,1,"strength2", new PotionEffect(MobEffects.STRENGTH, 30, 1, false, false)),
+		RESIST(6,2,"resistance", new PotionEffect(MobEffects.RESISTANCE, 60, 2, false, false)),
+		RESIST1(7,2,"resistance2", new PotionEffect(MobEffects.RESISTANCE, 40, 0, false, false)),
+		RESIST2(8,2,"resistance3", new PotionEffect(MobEffects.RESISTANCE, 20, 1, false, false)),
+		HEAL(9,3,"healing", new PotionEffect(MobEffects.REGENERATION, 120, 0, false, false)),
+		HEAL2(10,3,"healing2", new PotionEffect(MobEffects.REGENERATION, 60, 1, false, false)),
+		HASTE(11,4,"haste", new PotionEffect(MobEffects.HASTE, 20, 0, false, false)),
+		LUCK(12,5,"luck", new PotionEffect(MobEffects.LUCK, 200, 0, false, false));
 		
     	//PotionEffect effect = new PotionEffect(potion, duration, amplifier, isFromBeacon, canSeeParticles);
 		
@@ -135,8 +137,12 @@ public class ItemSelfAuraCharm extends Item{
 			return meta;
 		}
 
-		public String getName() {
+		public String getUnlocalizedName() {
 			return name;
+		}
+		
+		public String getName(){
+			return ClientHandler.instance().localize("a7armorauras.auras."+name);
 		}
 		
 		public PotionEffect getEffect(){
